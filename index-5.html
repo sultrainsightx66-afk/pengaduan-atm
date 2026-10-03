@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Layanan Pengaduan Kendala Transaksi ATM | Bank Sultra</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f2f4f7;--paper:#fff;--ink:#1b2430;--mute:#5d6877;--line:#d3d9e1;--navy:#0a2f5c;--blue:#0b5cad;--gold:#c99a1b;--err:#b3261e;--ok:#17703f;--field:#fff;--sel:#eaf2fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d141d;--paper:#16202c;--ink:#e6ebf2;--mute:#9aa7b8;--line:#2c3a4d;--navy:#071d39;--blue:#5ea3ec;--gold:#e0b440;--err:#ff8f86;--ok:#63d398;--field:#101923;--sel:#1a2c44}}
+:root[data-theme="dark"]{--bg:#0d141d;--paper:#16202c;--ink:#e6ebf2;--mute:#9aa7b8;--line:#2c3a4d;--navy:#071d39;--blue:#5ea3ec;--gold:#e0b440;--err:#ff8f86;--ok:#63d398;--field:#101923;--sel:#1a2c44}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.6 "Public Sans","Segoe UI",Roboto,Arial,sans-serif}
+.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.in{max-width:760px;margin:0 auto;padding:0 20px}
+.top .in{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:20px;color:var(--navy);letter-spacing:.2px}
+.logo i{display:block;height:3px;width:100%;background:var(--gold);margin-top:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo{color:#fff}}
+:root[data-theme="dark"] .logo{color:#fff}
+.tag{font-size:13px;color:var(--mute);font-style:italic}
+.band{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.band:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border:34px solid rgba(255,255,255,.05);border-radius:50%}
+.band .in{padding:38px 20px 42px;position:relative;z-index:1}
+.band h1{margin:0 0 10px;font-size:26px;line-height:1.25;font-weight:700;max-width:560px}
+.band p{margin:0;color:#c3d3e8;max-width:520px}
+main{max-width:760px;margin:-22px auto 0;padding:0 14px 40px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:4px}
+.sec{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:26px 28px;border-bottom:1px solid var(--line)}
+.sec:last-of-type{border-bottom:0}
+@media(max-width:640px){.sec{grid-template-columns:1fr;gap:12px;padding:22px 18px}}
+.sec h2{margin:0 0 4px;font-size:16px;color:var(--navy)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sec h2{color:#fff}}
+:root[data-theme="dark"] .sec h2{color:#fff}
+.sec .d{margin:0;font-size:13.5px;color:var(--mute)}
+label.l{display:block;font-weight:600;font-size:14px;margin:0 0 5px}
+.fld{margin-bottom:16px}.fld:last-child{margin-bottom:0}
+.r{color:var(--err)}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=time],textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:3px;background:var(--field);color:var(--ink);font:inherit;min-height:44px}
+textarea{min-height:100px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.g2{grid-template-columns:1fr}}
+.opt{display:flex;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:3px;margin-bottom:8px;cursor:pointer;background:var(--field)}
+.opt:hover{border-color:var(--blue)}
+.opt:has(input:checked){border-color:var(--blue);background:var(--sel);box-shadow:inset 3px 0 0 var(--blue)}
+.opt:has(input:focus-visible){outline:2px solid var(--blue)}
+.opt input{margin-top:5px;accent-color:var(--blue)}
+.opt b{display:block;font-weight:600;font-size:15px}
+.opt small{color:var(--mute);font-size:13px}
+#detail{display:none}#detail.show{display:grid;animation:in .25s ease}
+@keyframes in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){#detail.show{animation:none}}
+.e{color:var(--err);font-size:13px;margin-top:4px;display:none}
+.bad{border-color:var(--err)!important}.bad ~ .e{display:block}
+.act{padding:20px 28px 26px;background:color-mix(in srgb,var(--line) 25%,var(--paper));border-top:1px solid var(--line);display:none}
+.act.show{display:block}
+@media(max-width:640px){.act{padding:18px}}
+.btn{display:block;width:100%;padding:14px;border:0;border-radius:3px;background:var(--blue);color:#fff;font:600 16px "Public Sans",Arial,sans-serif;cursor:pointer}
+:root:not([data-theme="light"]) .btn{color:#fff}
+.btn:hover{filter:brightness(.92)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.sec2{max-width:540px;margin:0 auto;padding:6px 0}
+.note{font-size:12.5px;color:var(--mute);margin:10px 0 0}
+#done{display:none;padding:34px 28px}
+@media(max-width:640px){#done{padding:26px 18px}}
+.ok{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.ok svg{flex:none}
+.ok h2{margin:0;font-size:21px;color:var(--ok)}
+.lead{color:var(--mute);margin:0 0 20px}
+.tk{border:1px solid var(--line);border-left:5px solid var(--gold);background:var(--field);display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:16px 20px;margin-bottom:22px}
+.tk .a{font-size:13px;color:var(--mute)}
+.tk .n{font-size:38px;font-weight:700;line-height:1.1;color:var(--blue);letter-spacing:1px}
+.tk .t{font-size:13px;text-align:right;color:var(--mute)}
+.tk .t b{display:block;color:var(--ink);font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:22px}
+td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--mute);width:36%;padding-right:12px}
+h3{font-size:15px;margin:0 0 8px;color:var(--navy)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h3{color:#fff}}
+:root[data-theme="dark"] h3{color:#fff}
+ol{margin:0 0 22px;padding-left:20px}ol li{margin-bottom:4px}
+.out{width:100%;padding:12px;background:transparent;border:1px solid var(--blue);color:var(--blue);border-radius:3px;font:600 15px "Public Sans",Arial,sans-serif;cursor:pointer}
+footer{text-align:center;font-size:12.5px;color:var(--mute);padding:6px 16px 30px}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><div class="logo">BANK SULTRA<i></i></div><div class="tag">Maju Bersama</div></div></div>
+<header class="band"><div class="in">
+<h1>Layanan Pengaduan Kendala Transaksi ATM</h1>
+<p>Suara Anda adalah bagian dari langkah kami. Melesat Maju Bersama.</p>
+</div></header>
+
+<main>
+<div class="sheet" id="sheet">
+<form id="f" novalidate>
+<div class="sec">
+<div><h2>Kontak</h2><p class="d">Untuk menghubungi Anda terkait pengaduan ini.</p></div>
+<div class="fld" style="margin:0"><label class="l" for="email">Email <span class="r">*</span></label>
+<input type="email" id="email" placeholder="nama@email.com" autocomplete="email"><div class="e">Masukkan alamat email yang valid.</div></div>
+</div>
+
+<div class="sec">
+<div><h2>Jenis kendala</h2><p class="d">Pilih satu. Kolom isian akan menyesuaikan.</p></div>
+<div>
+<label class="opt"><input type="radio" name="jenis" value="Penarikan Tunai Gagal" data-k="1"><span><b>Penarikan Tunai Gagal</b><small>Saldo terdebit tetapi uang tidak keluar</small></span></label>
+<label class="opt"><input type="radio" name="jenis" value="Transfer Gagal" data-k="1"><span><b>Transfer Gagal</b><small>Saldo sudah terpotong</small></span></label>
+<label class="opt"><input type="radio" name="jenis" value="Kendala Teknis Mesin ATM Lainnya" data-k="1"><span><b>Kendala Teknis Mesin ATM Lainnya</b><small>Kartu tertelan, layar error, mesin tidak merespons</small></span></label>
+<label class="opt"><input type="radio" name="jenis" value="Kesan, Apresiasi, dan Usulan Inovasi" data-k="0"><span><b>Kesan, Apresiasi, dan Usulan Inovasi</b><small>Sampaikan masukan untuk layanan kami</small></span></label>
+<div class="e" id="eJ">Pilih salah satu jenis kendala.</div>
+</div></div>
+
+<div class="sec" id="detail">
+<div><h2 id="dT">Detail kejadian</h2><p class="d" id="dH"></p></div>
+<div>
+<div id="kej" class="g2 fld">
+<div><label class="l" for="tgl">Tanggal kejadian <span class="r">*</span></label><input type="date" id="tgl"><div class="e">Isi tanggal kejadian.</div></div>
+<div><label class="l" for="jam">Waktu kejadian <span class="r">*</span></label><input type="time" id="jam"><div class="e">Isi waktu kejadian.</div></div>
+</div>
+<div class="fld"><label class="l" for="nama">Nama lengkap <span class="r" id="rN">*</span></label><input type="text" id="nama" placeholder="Sesuai nama pemilik rekening" autocomplete="name"><div class="e">Isi nama lengkap.</div></div>
+<div class="fld"><label class="l" for="hp">Nomor telepon / WhatsApp <span class="r" id="rH">*</span></label><input type="tel" id="hp" inputmode="tel" placeholder="08xxxxxxxxxx" autocomplete="tel"><div class="e">Masukkan nomor telepon yang valid.</div></div>
+<div class="fld" id="lokW"><label class="l" for="lok">Lokasi kejadian <span class="r">*</span></label><input type="text" id="lok" placeholder="Contoh: ATM Bank Sultra Kantor Pusat, Kendari"><div class="e">Isi lokasi ATM tempat kejadian.</div></div>
+<div class="fld"><label class="l" for="ur" id="lU">Keterangan tambahan</label><textarea id="ur"></textarea><div class="e">Tulis pesan Anda.</div></div>
+</div></div>
+
+<div class="act" id="act"><div class="sec2"><button class="btn" type="submit">Kirim pengaduan</button>
+<p class="e" id="sendErr" role="alert" style="font-size:14px">Pengaduan belum terkirim. Periksa koneksi internet Anda lalu coba lagi.</p>
+<p class="note">Jangan menuliskan PIN, OTP, atau kata sandi pada formulir ini.</p></div></div>
+</form>
+
+<div id="done" aria-live="polite">
+<div class="ok"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ok)"/><path d="M12 20.5l5.5 5.5L28 15" fill="none" stroke="var(--ok)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h2>Pengaduan diterima</h2></div>
+<p class="lead" id="lead"></p>
+<div class="tk"><div><div class="a" id="qa">Nomor antrean</div><div class="n" id="qn"></div></div><div class="t">No. tiket<b id="tn"></b><span id="tw"></span></div></div>
+<table id="sum"></table>
+<h3>Langkah selanjutnya</h3><ol id="steps"></ol>
+<button class="out" id="again" type="button">Isi pengaduan baru</button>
+</div>
+</div>
+</main>
+<footer>&copy; Bank Sultra. Bank Sultra berizin dan diawasi oleh Otoritas Jasa Keuangan.</footer>
+
+<script>
+(function(){
+var EMAIL='sultrainsightx66@gmail.com';
+var $=function(i){return document.getElementById(i)},f=$('f'),kind=null;
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function pad(n){return(n<10?'0':'')+n}
+function bad(el,ok){el.classList.toggle('bad',!ok);return ok}
+f.addEventListener('change',function(e){
+ if(e.target.name!=='jenis')return;
+ kind=e.target.dataset.k==='1';$('eJ').style.display='none';
+ $('detail').classList.add('show');$('act').classList.add('show');
+ $('kej').style.display=kind?'grid':'none';$('lokW').style.display=kind?'block':'none';
+ $('rN').style.display=$('rH').style.display=kind?'inline':'none';
+ $('dT').textContent=kind?'Detail kejadian':'Pesan Anda';
+ $('dH').textContent=kind?'Isi sesuai kejadian yang Anda alami agar transaksi dapat kami telusuri.':'Nama dan nomor telepon boleh dikosongkan.';
+ $('lU').textContent=kind?'Keterangan tambahan':'Kesan, apresiasi, atau usulan *';
+ $('ur').placeholder=kind?'Nominal transaksi, 4 digit akhir kartu, atau hal lain yang membantu kami.':'Tulis masukan Anda untuk layanan kami.';
+ if(window.matchMedia('(max-width:640px)').matches)$('detail').scrollIntoView({behavior:'smooth',block:'start'});
+});
+f.addEventListener('submit',function(e){
+ e.preventDefault();
+ var j=f.querySelector('input[name=jenis]:checked'),ok=bad($('email'),/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('email').value.trim()));
+ if(!j){$('eJ').style.display='block';ok=false}
+ else if(kind){
+  ok=bad($('tgl'),!!$('tgl').value)&ok;ok=bad($('jam'),!!$('jam').value)&ok;
+  ok=bad($('nama'),$('nama').value.trim().length>1)&ok;
+  ok=bad($('hp'),/^[0-9+\s-]{9,16}$/.test($('hp').value.trim()))&ok;
+  ok=bad($('lok'),$('lok').value.trim().length>2)&ok;
+ }else ok=bad($('ur'),$('ur').value.trim().length>4)&ok;
+ if(!ok){var b=f.querySelector('.bad');(b||$('eJ')).scrollIntoView({behavior:'smooth',block:'center'});return}
+ var d=new Date(),v=function(i){return $(i).value.trim()};
+ var rows=[['Jenis',j.value],['Email',v('email')]];
+ if(v('nama'))rows.push(['Nama',v('nama')]);
+ if(v('hp'))rows.push(['Telepon',v('hp')]);
+ if(kind){rows.push(['Waktu kejadian',v('tgl')+', pukul '+v('jam')]);rows.push(['Lokasi',v('lok')])}
+ if(v('ur'))rows.push(['Keterangan',v('ur')]);
+ $('sum').innerHTML=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+esc(r[1])+'</td></tr>'}).join('');
+ $('tn').textContent='ATM-'+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'-'+Math.floor(1000+Math.random()*9000);
+ $('tw').textContent=pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYear()+' '+pad(d.getHours())+':'+pad(d.getMinutes());
+ if(kind){
+  $('qa').textContent='Nomor antrean';$('qn').textContent='A-'+('00'+(Math.floor(Math.random()*60)+1)).slice(-3);
+  $('lead').textContent='Terima kasih. Agar cepat ditangani, silakan langsung datang ke kantor Bank Sultra terdekat dan tunjukkan nomor antrean ini.';
+  $('steps').innerHTML='<li>Datang ke kantor Bank Sultra terdekat pada jam layanan.</li><li>Tunjukkan nomor antrean dan nomor tiket kepada petugas.</li><li>Bawa kartu ATM, KTP, dan struk transaksi (jika ada).</li><li>Petugas akan menelusuri transaksi dan menyampaikan hasilnya kepada Anda.</li>';
+ }else{
+  $('qa').textContent='Status';$('qn').textContent='Terkirim';
+  $('lead').textContent='Terima kasih. Kesan dan usulan Anda sangat berarti untuk peningkatan layanan kami.';
+  $('steps').innerHTML='<li>Masukan Anda ditinjau oleh tim layanan nasabah.</li><li>Jika perlu klarifikasi, kami akan menghubungi Anda melalui email.</li>';
+ }
+ function finish(){f.style.display='none';$('done').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+ var btn=f.querySelector('.btn');$('sendErr').style.display='none';
+ if(EMAIL.indexOf('GANTI')>-1){finish();return}
+ var data={_subject:'Pengaduan ATM Baru - '+j.value,_template:'table',_captcha:'false',
+  'No. Tiket':$('tn').textContent,'Nomor Antrean':$('qn').textContent,'Waktu Kirim':$('tw').textContent,'Jenis Kendala':j.value,'Email Nasabah':v('email')};
+ if(kind){data['Tanggal Kejadian']=v('tgl');data['Waktu Kejadian']=v('jam');data['Lokasi Kejadian']=v('lok')}
+ data['Nama']=v('nama')||'-';data['Telepon']=v('hp')||'-';data['Keterangan']=v('ur')||'-';
+ btn.disabled=true;btn.textContent='Mengirim...';
+ fetch('https://formsubmit.co/ajax/'+EMAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+ .then(function(r){return r.json().then(function(j){return{s:r.status,j:j}},function(){throw{msg:'respons tidak terbaca (status '+r.status+')'}})})
+ .then(function(x){if(String(x.j.success)==='true')finish();else throw{msg:(x.j.message||'ditolak')+' (status '+x.s+')'}})
+ .catch(function(e){btn.disabled=false;btn.textContent='Kirim pengaduan';$('sendErr').textContent='Pengaduan belum terkirim. Penyebab: '+((e&&(e.msg||e.message))||'tidak diketahui')+'. Silakan coba lagi.';$('sendErr').style.display='block'});
+});
+$('again').addEventListener('click',function(){f.reset();var b=f.querySelector('.btn');b.disabled=false;b.textContent='Kirim pengaduan';$('detail').classList.remove('show');$('act').classList.remove('show');kind=null;$('done').style.display='none';f.style.display='block';window.scrollTo({top:0})});
+})();
+</script>
+</body>
+</html>
